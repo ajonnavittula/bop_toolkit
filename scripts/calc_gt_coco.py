@@ -19,7 +19,7 @@ from bop_toolkit_lib import misc
 ################################################################################
 p = {
   # See dataset_params.py for options.
-  'dataset': 'tudl',
+  'dataset': 'ycbv',
 
   # Dataset split. Options: 'train', 'test'.
   'dataset_split': 'train',
@@ -95,7 +95,10 @@ for scene_id in dp_split['scene_ids']:
             category_info = inst['obj_id']
             visibility = gt_info[idx]['visib_fract']
             # Add ignore flag for objects smaller than 10% visible
+            # remove annotations for < 10% visible objects
             ignore_gt = visibility < 0.1
+            if ignore_gt:
+                continue
             mask_visib_p = dp_split['mask_visib_tpath'].format(scene_id=scene_id, im_id=im_id, gt_id=idx)
             mask_full_p = dp_split['mask_tpath'].format(scene_id=scene_id, im_id=im_id, gt_id=idx)
             
