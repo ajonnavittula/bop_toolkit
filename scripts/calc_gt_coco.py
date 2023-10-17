@@ -35,6 +35,9 @@ p = {
 
 }
 ################################################################################
+thing_classes = ["master_chef_can", "cracker_box", "sugar_box", "tomato_soup_can", "mustard_bottle", "tuna_fish_can", "pudding_box",\
+                                        "gelatin_box", "potted_meat_can", "banana", "pitcher_base", "bleach_cleanser", "bowl", "mug", "power_drill",\
+                                            "wood_block", "scissors", "large_marker", "medium_clamp", "large_clamp", "foam_brick"]
 
 datasets_path = p['datasets_path']
 dataset_name = p['dataset']
@@ -49,7 +52,7 @@ complete_split = split
 if dp_split['split_type'] is not None:
     complete_split += '_' + dp_split['split_type']
 
-CATEGORIES = [{'id': obj_id, 'name':str(obj_id), 'supercategory': dataset_name} for obj_id in dp_model['obj_ids']]
+CATEGORIES = [{'id': obj_id, 'name':thing_classes[obj_id-1], 'supercategory': dataset_name} for obj_id in dp_model['obj_ids']]
 INFO = {
     "description": dataset_name + '_' + split,
     "url": "https://github.com/thodan/bop_toolkit",
