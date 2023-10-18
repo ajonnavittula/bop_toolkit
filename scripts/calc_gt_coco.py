@@ -96,6 +96,10 @@ for scene_id in dp_split['scene_ids']:
         # Go through each instance in view
         for idx,inst in enumerate(inst_list): 
             category_info = inst['obj_id']
+            # ignore woodblocks
+            category_name = CATEGORIES[category_info-1]['name']
+            if category_name == "wood_block":
+                continue
             visibility = gt_info[idx]['visib_fract']
             # Add ignore flag for objects smaller than 10% visible
             # remove annotations for < 10% visible objects
